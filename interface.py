@@ -67,9 +67,9 @@ if st.button("� Soumettre ma demande", type="primary", use_container_width=Tru
 	try:
 		with st.spinner("Analyse en cours par le modèle IA..."):
 			reponse = requests.post(
-				"http://127.0.0.1:5000/predire",
+				"https://web-production-54764.up.railway.app/predire",
 				json=demande,
-				timeout=10
+				timeout=30
 			)
 
 		if reponse.status_code == 200:
@@ -111,12 +111,12 @@ if st.button("� Soumettre ma demande", type="primary", use_container_width=Tru
 			st.error(f"Erreur API: {reponse.status_code}")
 
 	except requests.exceptions.ConnectionError:
-		st.error("❌ Impossible de contacter l'API Flask.")
-		st.info("→ Vérifiez que app.py est lancé : python app.py")
+		st.error("❌ Impossible de contacter l'API Railway.")
+		st.info("→ Vérifiez que l'API est en ligne : https://web-production-54764.up.railway.app/")
 
 	except requests.exceptions.Timeout:
-		st.error("⏱️ L'API met trop de temps à répondre.")
-		st.info("→ Relancez app.py et réessayez.")
+		st.error("⏱️ L'API met trop de temps à répondre (>30s).")
+		st.info("→ Vérifiez le statut de Railway ou réessayez.")
 
 	except Exception as e:
 		st.error(f"Erreur inattendue : {str(e)}")
