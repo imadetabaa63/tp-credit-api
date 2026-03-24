@@ -16,9 +16,9 @@ def accueil():
 	return jsonify(
 		{
 			"message": "API crédit — opérationnelle ✅",
-			"routes": {
-				"POST /predire": "Soumettre une demande",
-				"GET /demo": "Voir un exemple",
+			"routes_disponibles": {
+				"POST /predire": "Soumettre une demande de crédit",
+				"GET /demo": "Voir un exemple de requête",
 			},
 		}
 	)
